@@ -1,12 +1,12 @@
-const template = 'export def first [] {
-  parse-input
+const template = 'export def first-puzzle [] {
+  prepare-input
 }
 
-export def second [] {
-  parse-input
+export def second-puzzle [] {
+  prepare-input
 }
 
-def parse-input [] {
+def prepare-input [] {
   open input
 }'
 
@@ -48,7 +48,7 @@ export def main [
   cd $'($date.year)/($date.day)'
   nu -c $'
     use . *
-    (match $puzzle { 1 => 'first' 2 => 'second' })
+    (match $puzzle { 1 => 'first-puzzle' 2 => 'second-puzzle' })
   '
 }
 

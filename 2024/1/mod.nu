@@ -1,5 +1,5 @@
-export def first [] {
-  parse-input
+export def first-puzzle [] {
+  prepare-input
   | each { sort }
   | [($in.0 | wrap left) ($in.1 | wrap right)]
   | do {|left right| $left | merge $right } ...$in
@@ -7,13 +7,13 @@ export def first [] {
   | math sum
 }
 
-export def second [] {
-  parse-input
+export def second-puzzle [] {
+  prepare-input
   | update 1 { $in | group-by | transpose value list | update list { length } | transpose -rd }
   | do {|left right| $left | reduce -f 0 {|x| $in + $x * ($right | get -i $'($x)' | default 0) } } ...$in
 }
 
-def parse-input [] {
+def prepare-input [] {
   open input
   | parse '{left}   {right}'
   | into int left right
